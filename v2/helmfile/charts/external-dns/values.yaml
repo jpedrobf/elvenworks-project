@@ -1,0 +1,48 @@
+provider: aws
+priorityClassName: system-cluster-critical
+policy: sync
+registry: txt
+domainFilters:
+  - teste.com
+
+sources:
+  - service
+  - ingress
+
+image:
+  repository: k8s.gcr.io/external-dns/external-dns
+  # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
+  tag: v0.11.0
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: external-dns
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::8888888888:role/external-dns-role
+
+### IAM POLICY 
+# {
+#   "Version": "2012-10-17",
+#   "Statement": [
+#     {
+#       "Effect": "Allow",
+#       "Action": [
+#         "route53:ChangeResourceRecordSets"
+#       ],
+#       "Resource": [
+#         "arn:aws:route53:::hostedzone/*"
+#       ]
+#     },
+#     {
+#       "Effect": "Allow",
+#       "Action": [
+#         "route53:ListHostedZones",
+#         "route53:ListResourceRecordSets"
+#       ],
+#       "Resource": [
+#         "*"
+#       ]
+#     }
+#   ]
+# }

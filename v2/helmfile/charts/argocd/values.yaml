@@ -1,0 +1,24 @@
+controller:
+  affinity:
+  replicas : 10
+  args:
+    appResyncPeriod: batata
+
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+
+
+redis-ha:
+  enabled: true
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+applicationSet:
+  replicas: 2

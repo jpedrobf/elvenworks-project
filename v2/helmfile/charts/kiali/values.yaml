@@ -1,0 +1,37 @@
+external_services:
+  prometheus:
+    custom_metrics_url: http://prometheus-operated.prometheus.svc:9090
+    url: http://prometheus-operated.prometheus.svc:9090
+  custom_dashboards:
+    enabled: true
+  istio:
+    root_namespace: ""
+  grafana:
+      enabled: true
+      # Grafana service name is "grafana" and is in the "telemetry" namespace.
+      in_cluster_url: 'http://prometheus-stack-grafana.prometheus:3000/'
+      # Public facing URL of Grafana
+      url: 'http://prometheus-stack-grafana.prometheus.:3000/'
+
+auth:
+  strategy: "anonymous"
+
+
+deployment:
+  image_name: quay.io/kiali/kiali
+  image_version: v1.57.1
+  version_label: v1.57.1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+  hpa:
+    api_version: "autoscaling/v1"
+    spec:
+      min_replicas: 1
+      max_replicas: 2
+      targetCPUUtilizationPercentage: 80%
+      
+  

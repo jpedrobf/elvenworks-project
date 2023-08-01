@@ -1,0 +1,110 @@
+
+helmDefaults:
+  kubeContext: irt-project
+  createNamespace: true
+  cleanupOnFail: true
+  wait: false
+
+repositories:
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+  - name: metrics-server
+    url: https://kubernetes-sigs.github.io/metrics-server/
+  - name: autoscaler
+    url: https://kubernetes.github.io/autoscaler
+  - name: argocd
+    url: https://argoproj.github.io/argo-helm
+  - name: istio
+    url: https://istio-release.storage.googleapis.com/charts
+  - name: kiali
+    url: https://kiali.org/helm-charts
+  - name: external-dns
+    url: https://kubernetes-sigs.github.io/external-dns
+
+templates:
+  prometheus: &prometheus
+    chart: prometheus-community/kube-prometheus-stack
+    namespace: prometheus
+    values:
+    - "charts/prometheus/values.yaml"
+
+  metrics-server: &metrics-server
+    chart: metrics-server/metrics-server
+    namespace: kube-system
+    version: 3.8.0
+    values: 
+    - "charts/metrics-server/values.yaml"
+
+  cluster-autoscaler: &cluster-autoscaler
+    chart: autoscaler/cluster-autoscaler
+    namespace: kube-system
+    version: 9.19.0
+    values:
+    - "charts/cluster-autoscaler/values.yaml"
+  
+  argocd: &argo-cd
+    chart: argocd/argo
+    namespace: argocd
+    values:
+    - "charts/argocd/values.yaml"
+  
+  istio-base: &istio-base
+    chart: istio/base
+    namespace: istio-system
+  
+  istiod: &istiod
+    chart: istio/istiod
+    namespace: istio-system
+  
+  istio-ingress: &istio-ingress
+    chart: istio/gateway
+    namespace: istio-ingress #todo namespace label: istio-injection=enabled
+
+  kiali-server: &kiali
+    chart: kiali/kiali-server
+    namespace: istio-system
+    version: 1.57.1
+    values:
+    - "charts/kiali/values.yaml"
+  
+  external-dns: &external-dns
+    chart: external-dns/external-dns
+    namespace: default
+    values:
+    - "charts/external-dns/values.yaml"
+
+
+
+
+releases:
+  #- name: prometheus-stack
+  #  <<: *prometheus
+
+  #- name: metrics-server
+  #  <<: *metrics-server
+  #- name: cluster-autoscaler
+  #  <<: *cluster-autoscaler
+    
+  #- name: argocd
+  #  <<: *argo-cd
+    
+  # - name: istio-base
+  #   <<: *istio-base
+
+  # - name: istiod
+  #   <<: *istiod
+    
+  # - name: istio-ingress
+  #   <<: *istio-ingress
+
+  - name: kiali
+    <<: *kiali
+
+  - name: external-dns
+    <<: *external-dns
+
+
+#releases:
+#  - name: prom-teste-batata
+#    namespace: prometheus
+#    chart: prometheus-community/prometheus

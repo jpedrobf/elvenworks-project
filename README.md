@@ -1,8 +1,8 @@
 # elvenworks-project
 projeto final do curso da elvenworks
 
+![projeto](https://raw.githubusercontent.com/jpedrobf/elvenworks-project/main/docs/diagrams/projeto.png)
 
-Projetos de terraform diferenciando tags para finops
 ## Redes
 - VPC
 - Subnets Publicas e Privadas

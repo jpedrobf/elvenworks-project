@@ -1,9 +1,9 @@
 locals {
-  name   = "ex-${basename(path.cwd)}"
+  name   = "elven-vpc"
   region = "eu-west-1"
 
   vpc_cidr        = "10.0.0.0/16"
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c", "eu-west-1d"]
 
   tags = {
     Example    = local.name

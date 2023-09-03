@@ -7,15 +7,6 @@ locals {
   ## (e.g.: não queremos usar a AZ 'E', por costumar não ter uma boa quantidade de instâncias de última geração)
   azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c", "eu-west-1d"]
   
-  # Calculate the prefix lengths for each subnet type
-  public_subnet_prefix_length  = 22 # /22 CIDR block
-  reserved_subnet_prefix_length = 22 # /22 CIDR block
-  private_subnet_prefix_length = 19 # /19 CIDR block
-
-  # Calculate the number of bits to borrow for each subnet type
-  public_subnet_borrow_bits  = local.public_subnet_prefix_length - 16
-  reserved_subnet_borrow_bits = local.reserved_subnet_prefix_length - 16
-  private_subnet_borrow_bits = local.private_subnet_prefix_length - 16
   tags = {
     Example    = local.name
     GithubRepo = "terraform-aws-vpc"

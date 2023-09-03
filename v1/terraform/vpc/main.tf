@@ -3,7 +3,9 @@ locals {
   region = "eu-west-1"
 
   vpc_cidr        = "10.0.0.0/16"
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  ## Az's são selecionadas manualmente pra dar possibilidade de customizar quais serão utilizadas 
+  ## (e.g.: não queremos usar a AZ 'E', por costumar não ter uma boa quantidade de instâncias de última geração)
+  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c", "eu-west-1d"]
 
   tags = {
     Example    = local.name

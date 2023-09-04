@@ -22,14 +22,14 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "elven-project-tf-remote-backend"
-    key            = "terraform.tfstate"
-    dynamodb_table = "elven-project-remote-backend"
-    encrypt        = true
-    region         = "us-west-1"
-    profile        = "lab"
-  }
+  # backend "s3" {
+  #   bucket         = "elven-project-tf-remote-backend"
+  #   key            = "terraform.tfstate"
+  #   dynamodb_table = "elven-project-remote-backend"
+  #   encrypt        = true
+  #   region         = "us-west-1"
+  #   profile        = "lab"
+  # }
 }
 provider "aws" {
   region                   = var.region

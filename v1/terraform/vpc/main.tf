@@ -1,11 +1,11 @@
 locals {
   name   = "elven-vpc"
-  region = "eu-west-1"
+  region = "sa-east-1"
 
-  vpc_cidr        = "10.0.0.0/16"
+  vpc_cidr        = "192.168.0.0/16"
   ## Az's são selecionadas manualmente pra dar possibilidade de customizar quais serão utilizadas 
   ## (e.g.: não queremos usar a AZ 'E', por costumar não ter uma boa quantidade de instâncias de última geração)
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c", "eu-west-1d"]
+  azs             = ["sa-east-1a", "sa-east-1b", "sa-east-1c"]
   
   tags = {
     Example    = local.name
@@ -26,22 +26,19 @@ module "vpc" {
 
   azs                 = local.azs
   public_subnets      = [
-    "10.0.0.0/22",
-    "10.0.4.0/22",
-    "10.0.8.0/22",
-    "10.0.12.0/22"
+    "192.168.0.0/22",
+    "192.168.4.0/22",
+    "192.168.8.0/22",
   ]
   database_subnets    = [
-    "10.0.16.0/22",
-    "10.0.20.0/22",
-    "10.0.24.0/22",
-    "10.0.28.0/22"
+    "192.168.16.0/22",
+    "192.168.20.0/22",
+    "192.168.24.0/22",
   ]
   private_subnets     = [
-    "10.0.32.0/19",
-    "10.0.64.0/19",
-    "10.0.96.0/19",
-    "10.0.128.0/19"
+    "192.168.32.0/19",
+    "192.168.64.0/19",
+    "192.168.96.0/19",
   ]
   
   single_nat_gateway = false

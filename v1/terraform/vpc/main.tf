@@ -1,5 +1,5 @@
 locals {
-  name   = "ex-${basename(path.cwd)}"
+  name   = "elven-vpc"
   region = "eu-west-1"
 
   vpc_cidr        = "10.0.0.0/16"
@@ -9,8 +9,8 @@ locals {
   
   tags = {
     Example    = local.name
-    GithubRepo = "terraform-aws-vpc"
-    GithubOrg  = "terraform-aws-modules"
+    GithubRepo = "github.com/jpedrobf/elvenworks-project"
+    GithubOrg  = "elvenproject-sre"
   }
 }
 

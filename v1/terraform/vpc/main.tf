@@ -1,5 +1,6 @@
 locals {
-  name   = "elven-vpc"
+  name   = "ex-${basename(path.cwd)}"
+
   region = "sa-east-1"
 
   vpc_cidr        = "192.168.0.0/16"

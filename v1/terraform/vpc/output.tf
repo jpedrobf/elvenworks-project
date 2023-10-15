@@ -108,26 +108,6 @@ output "public_subnets_ipv6_cidr_blocks" {
   value       = module.vpc.public_subnets_ipv6_cidr_blocks
 }
 
-output "outpost_subnets" {
-  description = "List of IDs of outpost subnets"
-  value       = module.vpc.outpost_subnets
-}
-
-output "outpost_subnet_arns" {
-  description = "List of ARNs of outpost subnets"
-  value       = module.vpc.outpost_subnet_arns
-}
-
-output "outpost_subnets_cidr_blocks" {
-  description = "List of cidr_blocks of outpost subnets"
-  value       = module.vpc.outpost_subnets_cidr_blocks
-}
-
-output "outpost_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of outpost subnets in an IPv6 enabled VPC"
-  value       = module.vpc.outpost_subnets_ipv6_cidr_blocks
-}
-
 output "database_subnets" {
   description = "List of IDs of database subnets"
   value       = module.vpc.database_subnets
@@ -156,51 +136,6 @@ output "database_subnet_group" {
 output "database_subnet_group_name" {
   description = "Name of database subnet group"
   value       = module.vpc.database_subnet_group_name
-}
-
-output "redshift_subnets" {
-  description = "List of IDs of redshift subnets"
-  value       = module.vpc.redshift_subnets
-}
-
-output "redshift_subnet_arns" {
-  description = "List of ARNs of redshift subnets"
-  value       = module.vpc.redshift_subnet_arns
-}
-
-output "redshift_subnets_cidr_blocks" {
-  description = "List of cidr_blocks of redshift subnets"
-  value       = module.vpc.redshift_subnets_cidr_blocks
-}
-
-output "redshift_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of redshift subnets in an IPv6 enabled VPC"
-  value       = module.vpc.redshift_subnets_ipv6_cidr_blocks
-}
-
-output "redshift_subnet_group" {
-  description = "ID of redshift subnet group"
-  value       = module.vpc.redshift_subnet_group
-}
-
-output "elasticache_subnets" {
-  description = "List of IDs of elasticache subnets"
-  value       = module.vpc.elasticache_subnets
-}
-
-output "elasticache_subnet_arns" {
-  description = "List of ARNs of elasticache subnets"
-  value       = module.vpc.elasticache_subnet_arns
-}
-
-output "elasticache_subnets_cidr_blocks" {
-  description = "List of cidr_blocks of elasticache subnets"
-  value       = module.vpc.elasticache_subnets_cidr_blocks
-}
-
-output "elasticache_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of elasticache subnets in an IPv6 enabled VPC"
-  value       = module.vpc.elasticache_subnets_ipv6_cidr_blocks
 }
 
 output "intra_subnets" {
@@ -246,11 +181,6 @@ output "private_route_table_ids" {
 output "database_route_table_ids" {
   description = "List of IDs of database route tables"
   value       = module.vpc.database_route_table_ids
-}
-
-output "redshift_route_table_ids" {
-  description = "List of IDs of redshift route tables"
-  value       = module.vpc.redshift_route_table_ids
 }
 
 output "elasticache_route_table_ids" {
@@ -306,16 +236,6 @@ output "private_route_table_association_ids" {
 output "database_route_table_association_ids" {
   description = "List of IDs of the database route table association"
   value       = module.vpc.database_route_table_association_ids
-}
-
-output "redshift_route_table_association_ids" {
-  description = "List of IDs of the redshift route table association"
-  value       = module.vpc.redshift_route_table_association_ids
-}
-
-output "redshift_public_route_table_association_ids" {
-  description = "List of IDs of the public redshift route table association"
-  value       = module.vpc.redshift_public_route_table_association_ids
 }
 
 output "elasticache_route_table_association_ids" {

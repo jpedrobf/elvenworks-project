@@ -1,11 +1,11 @@
 locals {
   name   = "ex-${basename(path.cwd)}"
-  region = "eu-west-1"
+  region = "us-west-2"
 
   vpc_cidr        = "10.0.0.0/16"
   ## Az's são selecionadas manualmente pra dar possibilidade de customizar quais serão utilizadas 
   ## (e.g.: não queremos usar a AZ 'E', por costumar não ter uma boa quantidade de instâncias de última geração)
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c", "eu-west-1d"]
+  azs             = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
   
   tags = {
     Example    = local.name
@@ -31,7 +31,7 @@ module "vpc" {
     "10.0.8.0/22",
     "10.0.12.0/22"
   ]
-  database_subnets    = [
+  intra_subnets    = [
     "10.0.16.0/22",
     "10.0.20.0/22",
     "10.0.24.0/22",

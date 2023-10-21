@@ -7,6 +7,6 @@ data "aws_ami" "eks_default" {
 
   filter {
     name   = "name"
-    values = ["amazon-eks-node-linux"]
+    values = ["amazon-eks-node-${local.cluster_version}-v*"]
   }
 }

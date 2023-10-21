@@ -1,7 +1,6 @@
 # elvenworks-project
 Projeto final do curso da elvenworks
 
-![projeto](/docs/diagrams/projeto.png)
 
 ## Overview
   Criação de infraestrutura de redes, utilizando Terraform para criar AWS VPC e um Internet Gateway associando subnets publicas. NAT Gateways associados às subnets privadas 
@@ -23,5 +22,3 @@ Projeto final do curso da elvenworks
 ## Infra
 - EKS
 - Nodegroup
-- Helmfile?
-

@@ -1,0 +1,1 @@
+Esse diretório contém um módulo "artesanal" para a criação da VPC e de um cluster EKS. Foi utilizado como um guia.

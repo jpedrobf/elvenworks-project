@@ -47,10 +47,10 @@ locals {
   shared              = var.shared
   module              = var.module != null ? lower(trimspace(var.module)) : null
 
-  name = replace("aws-${local.resource_identifier}-${var.name}-${local.aws_region}-${local.environment}", "_", "-")
+  #name = replace("aws-${local.resource_identifier}-${var.name}-${local.aws_region}-${local.environment}", "_", "-")
 
   tags_optional = {
-    "Name"        = local.name
+    #"Name"        = local.name
     "application" = local.application
     "environment" = local.environment_map[local.environment]
   }

@@ -1,18 +1,3 @@
-# provider "aws" {
-
-#   access_key                  = "mock_access_key"
-#   secret_key                  = "mock_secret_key"
-#   region                      = "us-east-1"
-
-#   s3_use_path_style           = true
-#   skip_credentials_validation = true
-#   skip_metadata_api_check     = true
-#   skip_requesting_account_id  = true
-
-#   endpoints {
-#     s3             = "http://s3.localhost.localstack.cloud:4566"
-#   }
-# }
 
 terraform {
   required_providers {
@@ -31,6 +16,8 @@ terraform {
   #   profile        = "lab"
   # }
 }
+
+
 provider "aws" {
   region                   = var.region
   shared_credentials_files = [pathexpand("~/.aws/credentials")]
@@ -45,3 +32,20 @@ provider "aws" {
     }
   }
 }
+
+# for terraform-local usage
+# provider "aws" {
+
+#   access_key                  = "mock_access_key"
+#   secret_key                  = "mock_secret_key"
+#   region                      = "us-east-1"
+
+#   s3_use_path_style           = true
+#   skip_credentials_validation = true
+#   skip_metadata_api_check     = true
+#   skip_requesting_account_id  = true
+
+#   endpoints {
+#     s3             = "http://s3.localhost.localstack.cloud:4566"
+#   }
+# }

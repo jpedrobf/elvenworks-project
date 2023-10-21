@@ -3,7 +3,7 @@ module "eks" {
   version = "~> 19.0"
   cluster_name    = local.name
   cluster_version = local.cluster_version
-  
+  tags = module.tags.custom
 
   cluster_endpoint_public_access  = true
 
@@ -25,7 +25,7 @@ module "eks" {
     }
   }
 
-   self_managed_node_groups = {
+  self_managed_node_groups = {
     # Default node group - as provisioned by the module defaults
     default_node_group = {}
     one = {
@@ -64,22 +64,7 @@ module "eks" {
 
       
 
-    #create_iam_role          = false
-    #iam_role_name            = "eks-${module.eks.cluster_name}-nodegroup"
-    #iam_role_use_name_prefix = false
-    #iam_role_description     = "EKS ${module.eks.cluster_name} node group role"
-    #iam_role_tags = {
-    #  Purpose = "Protector of the kubelet"
-    #}
-      # cluster_timeouts = {
-      #   create = "80m"
-      #   update = "80m"
-      #   delete = "80m"
-      # }
-    }
-
-
-  ###########################
+  }
 
   aws_auth_roles = [
     {
@@ -101,10 +86,6 @@ module "eks" {
       most_recent = true
     }
   }
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
 
 }
 
@@ -114,6 +95,17 @@ module "key_pair" {
 
   key_name_prefix    = local.name
   create_private_key = true
+}
 
-  tags = local.tags
+module "tags" { 
+  source  = "../tags"
+
+  environment         = local.environment
+  squad               = local.squad
+  bu                  = local.bu
+  tribe               = local.tribe
+  cost_optimized      = local.cost_optimized
+  shared              = local.shared
+  custom_tags         = local.custom_tags
+  resource_identifier = local.resource_identifier
 }

@@ -48,20 +48,6 @@ output "vpc_main_route_table_id" {
   value       = module.vpc.vpc_main_route_table_id
 }
 
-output "vpc_ipv6_association_id" {
-  description = "The association ID for the IPv6 CIDR block"
-  value       = module.vpc.vpc_ipv6_association_id
-}
-
-output "vpc_ipv6_cidr_block" {
-  description = "The IPv6 CIDR block"
-  value       = module.vpc.vpc_ipv6_cidr_block
-}
-
-output "vpc_secondary_cidr_blocks" {
-  description = "List of secondary CIDR blocks of the VPC"
-  value       = module.vpc.vpc_secondary_cidr_blocks
-}
 
 output "vpc_owner_id" {
   description = "The ID of the AWS account that owns the VPC"
@@ -83,11 +69,6 @@ output "private_subnets_cidr_blocks" {
   value       = module.vpc.private_subnets_cidr_blocks
 }
 
-output "private_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of private subnets in an IPv6 enabled VPC"
-  value       = module.vpc.private_subnets_ipv6_cidr_blocks
-}
-
 output "public_subnets" {
   description = "List of IDs of public subnets"
   value       = module.vpc.public_subnets
@@ -103,11 +84,6 @@ output "public_subnets_cidr_blocks" {
   value       = module.vpc.public_subnets_cidr_blocks
 }
 
-output "public_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of public subnets in an IPv6 enabled VPC"
-  value       = module.vpc.public_subnets_ipv6_cidr_blocks
-}
-
 output "database_subnets" {
   description = "List of IDs of database subnets"
   value       = module.vpc.database_subnets
@@ -121,11 +97,6 @@ output "database_subnet_arns" {
 output "database_subnets_cidr_blocks" {
   description = "List of cidr_blocks of database subnets"
   value       = module.vpc.database_subnets_cidr_blocks
-}
-
-output "database_subnets_ipv6_cidr_blocks" {
-  description = "List of IPv6 cidr_blocks of database subnets in an IPv6 enabled VPC"
-  value       = module.vpc.database_subnets_ipv6_cidr_blocks
 }
 
 output "database_subnet_group" {
@@ -158,15 +129,6 @@ output "intra_subnets_ipv6_cidr_blocks" {
   value       = module.vpc.intra_subnets_ipv6_cidr_blocks
 }
 
-output "elasticache_subnet_group" {
-  description = "ID of elasticache subnet group"
-  value       = module.vpc.elasticache_subnet_group
-}
-
-output "elasticache_subnet_group_name" {
-  description = "Name of elasticache subnet group"
-  value       = module.vpc.elasticache_subnet_group_name
-}
 
 output "public_route_table_ids" {
   description = "List of IDs of public route tables"
@@ -181,11 +143,6 @@ output "private_route_table_ids" {
 output "database_route_table_ids" {
   description = "List of IDs of database route tables"
   value       = module.vpc.database_route_table_ids
-}
-
-output "elasticache_route_table_ids" {
-  description = "List of IDs of elasticache route tables"
-  value       = module.vpc.elasticache_route_table_ids
 }
 
 output "intra_route_table_ids" {
@@ -238,10 +195,6 @@ output "database_route_table_association_ids" {
   value       = module.vpc.database_route_table_association_ids
 }
 
-output "elasticache_route_table_association_ids" {
-  description = "List of IDs of the elasticache route table association"
-  value       = module.vpc.elasticache_route_table_association_ids
-}
 
 output "intra_route_table_association_ids" {
   description = "List of IDs of the intra route table association"
@@ -288,15 +241,6 @@ output "egress_only_internet_gateway_id" {
   value       = module.vpc.egress_only_internet_gateway_id
 }
 
-output "cgw_ids" {
-  description = "List of IDs of Customer Gateway"
-  value       = module.vpc.cgw_ids
-}
-
-output "cgw_arns" {
-  description = "List of ARNs of Customer Gateway"
-  value       = module.vpc.cgw_arns
-}
 
 output "this_customer_gateway" {
   description = "Map of Customer Gateway attributes"

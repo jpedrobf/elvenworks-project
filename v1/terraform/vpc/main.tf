@@ -1,6 +1,5 @@
 locals {
-  name   = "ex-${basename(path.cwd)}"
-
+  name   = "elven-vpc"
   region = "sa-east-1"
 
   vpc_cidr        = "192.168.0.0/16"
@@ -13,6 +12,21 @@ locals {
     GithubRepo = "github.com/jpedrobf/elvenworks-project"
     GithubOrg  = "elvenproject-sre"
   }
+}
+
+
+module "tags" { 
+  source  = "../tags"
+
+  name                = var.name
+  environment         = var.environment
+  squad               = var.squad
+  bu                  = var.bu
+  tribe               = var.tribe
+  cost_optimized      = var.cost_optimized
+  shared              = var.shared
+  custom_tags         = var.custom_tags
+  resource_identifier = var.resource_identifier
 }
 
 ################################################################################

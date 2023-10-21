@@ -8,7 +8,6 @@ locals {
   azs             = ["sa-east-1a", "sa-east-1b", "sa-east-1c"]
   
   tags = {
-    Example    = local.name
     GithubRepo = "github.com/jpedrobf/elvenworks-project"
     GithubOrg  = "elvenproject-sre"
   }

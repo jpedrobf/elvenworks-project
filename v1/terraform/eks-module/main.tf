@@ -64,13 +64,13 @@ module "eks" {
 
       
 
-      # create_iam_role          = false
-      # iam_role_name            = "eks-self-managed-nodegroup"
-      # iam_role_use_name_prefix = false
-      # iam_role_description     = "EKS self-managed node group role"
-      # iam_role_tags = {
-      #   Purpose = "Protector of the kubelet"
-      # }
+    #create_iam_role          = false
+    #iam_role_name            = "eks-${module.eks.cluster_name}-nodegroup"
+    #iam_role_use_name_prefix = false
+    #iam_role_description     = "EKS ${module.eks.cluster_name} node group role"
+    #iam_role_tags = {
+    #  Purpose = "Protector of the kubelet"
+    #}
       # cluster_timeouts = {
       #   create = "80m"
       #   update = "80m"
@@ -114,47 +114,6 @@ module "key_pair" {
 
   key_name_prefix    = local.name
   create_private_key = true
-
-  tags = local.tags
-}
-module "ebs_kms_key" {
-  source  = "terraform-aws-modules/kms/aws"
-  version = "~> 1.5"
-
-  description = "Customer managed key to encrypt EKS managed node group volumes"
-
-  # Policy
-  key_administrators = [
-    data.aws_caller_identity.current.arn
-  ]
-
-  key_service_roles_for_autoscaling = [
-    # required for the ASG to manage encrypted volumes for nodes
-    "arn:aws:iam::${local.account_id}:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
-    # required for the cluster / persistentvolume-controller to create encrypted PVCs
-    module.eks.cluster_iam_role_arn,
-  ]
-
-  # Aliases
-  aliases = ["eks/${local.name}/ebs"]
-
-}
-resource "aws_iam_policy" "additional" {
-  name        = "${local.name}-additional"
-  description = "Example usage of node additional policy"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "ec2:Describe*",
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
-    ]
-  })
 
   tags = local.tags
 }

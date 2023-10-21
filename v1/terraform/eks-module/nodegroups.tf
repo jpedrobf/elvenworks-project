@@ -30,8 +30,7 @@ locals {
             volume_type           = "gp3"
             iops                  = 3000
             throughput            = 150
-            encrypted             = true
-            kms_key_id            = module.ebs_kms_key.key_arn
+            encrypted             = false
             delete_on_termination = true
             }
         }

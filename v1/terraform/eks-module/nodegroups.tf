@@ -6,7 +6,7 @@ locals {
     nodegroup_one_minsize     = 1
     nodegroup_one_maxsize     = 5
     nodegroup_one_desiredsize = 1
-    nodegroup_one_launch_template_name            = "${module.eks.name}-${local.nodegroup_one_name}"
+    nodegroup_one_launch_template_name            = "${module.eks.cluster_name}-${local.nodegroup_one_name}"
     nodegroup_one_launch_template_use_name_prefix = false
     nodegroup_one_launch_template_description     = "Self managed node group for ${local.nodegroup_one_name} nodes"
     
@@ -16,7 +16,7 @@ locals {
     nodegroup_two_minsize = 1
     nodegroup_two_maxsize = 2
     nodegroup_two_desiredsize = 1
-    nodegroup_two_launch_template_name            = "${module.eks.name}-${local.nodegroup_two_name}"
+    nodegroup_two_launch_template_name            = "${module.eks.cluster_name}-${local.nodegroup_two_name}"
     nodegroup_two_launch_template_use_name_prefix = false
     nodegroup_two_launch_template_description     = "Self managed node group for ${local.nodegroup_two_name} nodes"
     

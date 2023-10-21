@@ -1,7 +1,17 @@
 provider "aws" {
-  region = local.region
-}
+  region                   = local.region
+  shared_credentials_files = [pathexpand("~/.aws/credentials")]
+  profile                  = "lab"
 
+  default_tags {
+    tags = {
+      bu        = "tech_cross"
+      project   = "elvenworks-project"
+      squad     = "sre"
+      terraform = "true"
+    }
+  }
+}
 
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
@@ -13,4 +23,7 @@ provider "kubernetes" {
     # This requires the awscli to be installed locally where Terraform is executed
     args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
+}
+
+provider "null" {
 }

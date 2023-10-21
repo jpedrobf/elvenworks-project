@@ -25,7 +25,5 @@ provider "kubernetes" {
   }
 }
 
-provider "template" {
-}
 provider "null" {
 }

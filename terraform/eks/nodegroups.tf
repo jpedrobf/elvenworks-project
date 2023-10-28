@@ -44,5 +44,22 @@ locals {
 
     ebs_optimized     = true
     enable_monitoring = true
-    # end of common nodegroup configurations
+
+    pre_bootstrap_user_data = <<-EOT
+      instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+      instance_life_cycle=`aws ec2 describe-instances --region us-east-2 --instance-ids $instance_id --query 'Reservations[0].Instances[0].InstanceLifecycle' --output text`
+      NODE_LABELS="--node-labels=instance=$instance_id,family=a,k8s-version=1.21"  
+      if [ "$instance_life_cycle" == "spot" ]; then
+          NODE_LABELS="$NODE_LABELS,lifecycle=Ec2Spot"
+      else
+          NODE_LABELS="$NODE_LABELS,lifecycle=OnDemand"
+      fi
+    EOT
+    post_bootstrap_user_data = <<-EOT
+      cd /tmp
+      sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+      sudo systemctl enable amazon-ssm-agent
+      sudo systemctl start amazon-ssm-agent
+    EOT
+# end of common nodegroup configurations
 }

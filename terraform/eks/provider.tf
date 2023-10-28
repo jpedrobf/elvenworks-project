@@ -1,16 +1,16 @@
 provider "aws" {
   region                   = local.region
-  shared_credentials_files = [pathexpand("~/.aws/credentials")]
-  profile                  = "lab"
+  #shared_credentials_files = [pathexpand("~/.aws/credentials")]
+  #profile                  = "lab"
 
-  default_tags {
-    tags = {
-      bu        = "tech_cross"
-      project   = "elvenworks-project"
-      squad     = "sre"
-      terraform = "true"
-    }
-  }
+  # default_tags {
+  #   tags = {
+  #     bu        = "tech_cross"
+  #     project   = "elvenworks-project"
+  #     squad     = "sre"
+  #     terraform = "true"
+  #   }
+  # }
 }
 
 provider "kubernetes" {

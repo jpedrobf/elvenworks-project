@@ -20,8 +20,8 @@ terraform {
 
 provider "aws" {
   region                   = var.region
-  shared_credentials_files = [pathexpand("~/.aws/credentials")]
-  profile                  = "lab"
+  #shared_credentials_files = [pathexpand("~/.aws/credentials")]
+  #profile                  = "lab"
 
   default_tags {
     tags = {

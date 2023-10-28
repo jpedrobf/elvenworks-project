@@ -1,6 +1,6 @@
 
 helmDefaults:
-  kubeContext: irt-project
+  kubeContext: elven-project
   createNamespace: true
   cleanupOnFail: true
   wait: false
@@ -16,13 +16,11 @@ repositories:
     url: https://argoproj.github.io/argo-helm
   - name: external-dns
     url: https://kubernetes-sigs.github.io/external-dns
+  - name: deliveryhero
+    url: https://charts.deliveryhero.io/
 
 templates:
-  prometheus: &prometheus
-    chart: prometheus-community/kube-prometheus-stack
-    namespace: prometheus
-    values:
-    - "charts/prometheus/values.yaml"
+
 
   metrics-server: &metrics-server
     chart: metrics-server/metrics-server
@@ -38,30 +36,44 @@ templates:
     values:
     - "charts/cluster-autoscaler/values.yaml"
   
-  argocd: &argo-cd
-    chart: argocd/argo
-    namespace: argocd
-    values:
-    - "charts/argocd/values.yaml"
+  # argocd: &argo-cd
+  #   chart: argocd/argo
+  #   namespace: argocd
+  #   values:
+  #   - "charts/argocd/values.yaml"
   
   external-dns: &external-dns
     chart: external-dns/external-dns
     namespace: default
     values:
     - "charts/external-dns/values.yaml"
+  
+  local-dns: &local-dns
+    chart: deliveryhero/node-local-dns
+    namespace: default
+    values:
+    - "charts/local-dns/values.yaml"
 
+  prometheus: &prometheus
+    chart: prometheus-community/kube-prometheus-stack
+    namespace: prometheus
+    values:
+    - "charts/prometheus/values.yaml"
 
 releases:
-  - name: prometheus-stack
-    <<: *prometheus
-
   - name: metrics-server
     <<: *metrics-server
   - name: cluster-autoscaler
     <<: *cluster-autoscaler
-    
-  - name: argocd
-    <<: *argo-cd
-
   - name: external-dns
     <<: *external-dns
+  - name: local-dns
+    <<: *local-dns   
+
+  - name: prometheus-stack
+    <<: *prometheus
+  # - name: argocd
+  #   <<: *argo-cd
+
+
+

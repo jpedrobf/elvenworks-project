@@ -17,17 +17,15 @@ module "eks" {
 
 
   # # Self Managed Node Group(s)
-  self_managed_node_group_defaults = {
-    # enable discovery of autoscaling groups by cluster-autoscaler
-    autoscaling_group_tags = {
-      "k8s.io/cluster-autoscaler/enabled" : true,
-      "k8s.io/cluster-autoscaler/${local.name}" : "owned",
-    }
-  }
-
   self_managed_node_groups = {
-    # Default node group - as provisioned by the module defaults
-    default_node_group = {}
+    # Default node group - as provisioned by the module defaults, used for critical addons like cluster-autoscaler and coredns
+    default_node_group = {
+      bootstrap_extra_args            = "--kubelet-extra-args '--node-labels=workload=critical'"
+      tags = {
+        "k8s.io/cluster-autoscaler/enabled" : true,
+        "k8s.io/cluster-autoscaler/${local.name}" : "owned",
+      }
+    }
     one = {
       name                            = local.nodegroup_one_name
       use_name_prefix                 = local.nodegroup_one_use_name_prefix
@@ -43,6 +41,14 @@ module "eks" {
       enable_monitoring               = local.enable_monitoring
       block_device_mappings           = local.block_device_mappings
       metadata_options                = local.metadata_options
+      enable_bootstrap_user_data      = true 
+      pre_bootstrap_user_data         = local.pre_bootstrap_user_data
+      bootstrap_extra_args            = "--kubelet-extra-args '--node-labels=workload=${local.nodegroup_one_name}'"
+      post_bootstrap_user_data        = local.post_bootstrap_user_data
+      tags = {
+        "k8s.io/cluster-autoscaler/enabled" : true,
+        "k8s.io/cluster-autoscaler/${local.name}" : "owned",
+      }
     }
     two = {
       name                            = local.nodegroup_two_name
@@ -59,7 +65,14 @@ module "eks" {
       enable_monitoring               = local.enable_monitoring
       block_device_mappings           = local.block_device_mappings
       metadata_options                = local.metadata_options
-
+      enable_bootstrap_user_data      = true 
+      pre_bootstrap_user_data         = local.pre_bootstrap_user_data
+      bootstrap_extra_args            = "--kubelet-extra-args '--node-labels=workload=${local.nodegroup_two_name}'"
+      post_bootstrap_user_data        = local.post_bootstrap_user_data
+      tags = {
+        "k8s.io/cluster-autoscaler/enabled" : true,
+        "k8s.io/cluster-autoscaler/${local.name}" : "owned",
+      }
     }
 
       

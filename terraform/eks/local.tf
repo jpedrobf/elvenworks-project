@@ -6,9 +6,9 @@ locals {
 
   # network configurations 
   vpc_cidr = "192.168.0.0/16"
-  vpc_id   = "vpc-0cc2b6cb1ade1d04c"
-  subnet_ids               = ["subnet-09615b01388609df5", "subnet-07cad8133995f8bbe", "subnet-07f9e510ee49dd667"]
-  control_plane_subnet_ids = ["subnet-09615b01388609df5", "subnet-07cad8133995f8bbe", "subnet-07f9e510ee49dd667"]
+  vpc_id   = "vpc-028d8a82ad4c1921a"
+  subnet_ids               = ["subnet-06e9656596980d2f3", "subnet-0a866705f5d7c6a97", "subnet-0e30b8f58d262c9f8"]
+  control_plane_subnet_ids = ["subnet-06e9656596980d2f3", "subnet-0a866705f5d7c6a97", "subnet-0e30b8f58d262c9f8"]
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
   # end of network configurations
 

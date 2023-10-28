@@ -4,11 +4,11 @@
 
 # https://artifacthub.io/packages/helm/cluster-autoscaler/cluster-autoscaler#values
 autoDiscovery:
-  clusterName: irt-project
+  clusterName: elven-project
 awsRegion: us-east-2
 image:
   repository: "k8s.gcr.io/autoscaling/cluster-autoscaler"
-  tag: "v1.21.3"
+  tag: "v1.26.2"
 
 #essa | é pra transformar em string
 podDisruptionBudget: 
@@ -19,11 +19,11 @@ extraArgs:
 
 expanderPriorities: |-
   10:
-    - irt-project-irt-project-nodegroup-template2022080113405616850000000120220801134056903500000003
+    - apps1
   0:
     - .*
 
 rbac: 
   serviceAccount: 
     annotations: 
-      "eks.amazonaws.com/role-arn": "arn:aws:iam::035267315123:role/irt-project-autoscaler"
+      "eks.amazonaws.com/role-arn": "arn:aws:iam::790817841652:role/cluster-autoscaler-role"

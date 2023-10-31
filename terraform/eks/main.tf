@@ -45,6 +45,7 @@ module "eks" {
       pre_bootstrap_user_data         = local.pre_bootstrap_user_data
       bootstrap_extra_args            = "--kubelet-extra-args '--node-labels=workload=${local.nodegroup_one_name}'"
       post_bootstrap_user_data        = local.post_bootstrap_user_data
+      instance_type                   = "t3.medium"
       tags = {
         "k8s.io/cluster-autoscaler/enabled" : true,
         "k8s.io/cluster-autoscaler/${local.name}" : "owned",
@@ -69,6 +70,7 @@ module "eks" {
       pre_bootstrap_user_data         = local.pre_bootstrap_user_data
       bootstrap_extra_args            = "--kubelet-extra-args '--node-labels=workload=${local.nodegroup_two_name}'"
       post_bootstrap_user_data        = local.post_bootstrap_user_data
+      instance_type                   = "t3.medium"
       tags = {
         "k8s.io/cluster-autoscaler/enabled" : true,
         "k8s.io/cluster-autoscaler/${local.name}" : "owned",
@@ -89,9 +91,6 @@ module "eks" {
 
 
  cluster_addons = {
-    coredns = {
-      most_recent = true
-    }
     kube-proxy = {
       most_recent = true
     }
